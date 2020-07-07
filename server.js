@@ -1,20 +1,24 @@
 const express = require('express');
+const cors = require('cors')
 const path=require('path');
 const app = express();
+
 const mongoose=require('mongoose')
 const bodyParser=require("body-parser")
-var cors = require('cors')
+
 const Router=require('./Router');
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/ytv', { useNewUrlParser: true,useUnifiedTopology: true })
+
+const MONGODB_URL='mongodb+srv://kibria:bikal3ta@cluster0.ak8uw.mongodb.net/Cluster0?retryWrites=true&w=majority'
+mongoose.connect(MONGODB_URL || 'mongodb://localhost:27017/ytv', { useNewUrlParser: true,useUnifiedTopology: true })
 app.use(bodyParser.json())
-app.use(cors())
+
 mongoose.connection.once('open',()=>{
     console.log('db connected')
 }).then('eorre',(eorre)=>{
     console.log('hi error occur');
 })
-
-app.use('/api',Router);
+app.use(cors())
+app.use('/api' ,Router);
 
 if(process.env.NODE_ENV==='production'){
   app.use(express.static('client/build'));

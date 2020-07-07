@@ -1,8 +1,10 @@
 const express = require('express')
 const Router = express.Router();
 const Sch = require('./Model');
+var cors = require('cors')
 
-Router.post('/save', async (req, res) => {
+Router.post('/save',cors(), async (req, res) => {
+    
     try {
         const k = new Sch(req.body);
         k.save();
@@ -14,7 +16,7 @@ Router.post('/save', async (req, res) => {
 
 })
 
-.get('/show',async(req,res)=>{
+.get('/show',cors(),async(req,res)=>{
     try {
          const kk= await Sch.find();
     res.json(kk);

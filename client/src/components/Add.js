@@ -16,7 +16,7 @@ class Add extends Component {
     }
     sub=async(e)=>{
         e.preventDefault();
-      await axios.post('http://localhost:5000/api/save',this.state);
+      await axios.post('mongodb+srv://kibria:bikal3ta@cluster0.ak8uw.mongodb.net/Cluster0?retryWrites=true&w=majority/api/save',this.state);
     }
     render() {
         return (
