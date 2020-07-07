@@ -1,17 +1,20 @@
 const express = require('express');
 const path=require('path');
-
 const app = express();
+const mongoose=require('mongoose')
+const bodyParser=require("body-parser")
+var cors = require('cors')
+const Router=require('./Router');
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/ytv', { useNewUrlParser: true,useUnifiedTopology: true })
+app.use(bodyParser.json())
+app.use(cors())
+mongoose.connection.once('open',()=>{
+    console.log('db connected')
+}).then('eorre',(eorre)=>{
+    console.log('hi error occur');
+})
 
-app.get('/api/customers', (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'John', lastName: 'Doe'},
-    {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-    {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-  ];
-
-  res.json(customers);
-});
+app.use('/api',Router);
 
 if(process.env.NODE_ENV==='production'){
   app.use(express.static('client/build'));

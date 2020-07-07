@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Brad Traversy",
   "license": "MIT",
@@ -19,7 +19,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^3.5.1",
-    "express": "^4.16.2"
+    "cors": "^2.8.5",
+    "express": "^4.16.2",
+    "mongoose": "^5.9.22"
   },
   "engines": {
     "node": "12.16.1"
